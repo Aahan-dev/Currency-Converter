@@ -45,3 +45,29 @@ def convert_currency(self, amount, from_currency, to_currency, rates):
             return (amount / rates.get(from_currency, 0)) * rates.get(to_currency, 0)
 
 
+def run(self):
+        """Run the currency converter tool."""
+        rates = self.fetch_exchange_rates()
+        if rates is None:
+            print("Could not fetch exchange rates. Exiting the converter.")
+            return
+
+        print("Available currencies:", ', '.join(rates.keys()))  # Display available currencies
+
+        while True:
+            try:
+                amount = float(input("Enter the amount to convert: "))
+                from_currency = input("Enter the currency to convert from (e.g., USD, EUR): ").upper()
+                to_currency = input("Enter the currency to convert to (e.g., USD, EUR): ").upper()
+
+                if from_currency not in rates or to_currency not in rates:
+                    print("Invalid currency. Please try again.")
+                    continue
+
+                # Perform currency conversion
+                converted_amount = self.convert_currency(amount, from_currency, to_currency, rates)
+                print(f"{amount} {from_currency} is equal to {converted_amount:.2f} {to_currency}")
+            except ValueError:
+                print("Invalid input. Please enter a valid number for the amount.")
+            except Exception as e:
+                print(f"An error occurred: {e}")
