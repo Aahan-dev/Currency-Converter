@@ -71,3 +71,41 @@ def run(self):
                 print("Invalid input. Please enter a valid number for the amount.")
             except Exception as e:
                 print(f"An error occurred: {e}")
+                
+            except ValueError:
+                print("Invalid input. Please enter a numeric value for the amount.")
+
+
+
+
+            # Check if the user wants to convert another amount
+            repeat = input("Do you want to convert another amount? (yes/no): ").strip().lower()
+            if repeat != 'yes':
+                print("Exiting the currency converter. Goodbye!")
+                break
+
+
+
+
+if __name__ == "__main__":
+    # Create an instance of CurrencyConverter and run it
+    currency_converter = CurrencyConverter()
+    currency_converter.run()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
